@@ -19,7 +19,10 @@ class Product(models.Model):
 class BillInfo(models.Model):
     customer_email = models.EmailField()
     date_created = models.DateTimeField(auto_now_add=True)
-
     def __str__(self):
         return f"Bill {self.id} - {self.customer_email}"
+    
+    class Meta:
+        db_table = "Billinfo"
+
 

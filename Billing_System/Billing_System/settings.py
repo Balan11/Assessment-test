@@ -56,7 +56,7 @@ ROOT_URLCONF = 'Billing_System.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR,'billingApp/template'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
