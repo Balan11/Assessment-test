@@ -21,8 +21,25 @@ class BillInfo(models.Model):
     date_created = models.DateTimeField(auto_now_add=True)
     def __str__(self):
         return f"Bill {self.id} - {self.customer_email}"
-    
     class Meta:
         db_table = "Billinfo"
-
-
+class BillDetails(models.Model):
+    billno = models.ForeignKey(BillInfo,on_delete=models.CASCADE)
+    product_ID = models.ForeignKey(Product,on_delete=models.CASCADE)
+    quantity =models.PositiveIntegerField()
+    
+    
+class Denomination(models.Model):
+    billno = models.ForeignKey(BillInfo,on_delete=models.CASCADE)
+    denomination_2000 = models.IntegerField(default=0)
+    denomination_500 = models.IntegerField(default=0)
+    denomination_200 = models.IntegerField(default=0)
+    denomination_100 = models.IntegerField(default=0)
+    denomination_50 = models.IntegerField(default=0)
+    denomination_20 = models.IntegerField(default=0)
+    denomination_10 = models.IntegerField(default=0)
+    denomination_5 = models.IntegerField(default=0)
+    denomination_2 = models.IntegerField(default=0)
+    denomination_1 = models.IntegerField(default=0)
+    cashPaidbyCustomer = models.IntegerField()
+    
