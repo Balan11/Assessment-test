@@ -14,18 +14,87 @@
                 <b>Customer Email</b>
             </div>
             <div class="col">
-                {{billinfo.billno.customer_email}}
+                {{ bill.customer_email}}
             </div>
         </div>
         <div class="row mb-2">
             <div class="row">
                 <h3>Bill Selection</h3>
             </div>
-            <div class="row">
-                <div class="col">Product Name: {{ billinfo.product_ID.name }}</div>
-                <div class="col">Quantity: {{ billinfo.quantity }}</div>
-                <div class="col">Unit Price: {{ billinfo.product_ID.unit_price }}</div>
-                <div class="col">Total Price: {{ billinfo.quantity * billinfo.product_ID.unit_price }}</div>
+            {%for i in billdetails%}
+            <div class="row border">
+                <div class="col border">Product Name: {{ i.item }}</div>
+                <div class="col border">Quantity: {{ i.Qty }}</div>
+                <div class="col border">Unit Price: {{ i.unitprice }}</div>
+                <div class="col border">Purchase Price: {{ i.unitprice }}</div>
+                <div class="col border"> Tax: {{ i.tax }} %</div>
+                <div class="col border"> Tax Paid: {{ i.taxamount }} </div>
+                <div class="col border">Total Price:{{i.totalprice}} </div>
+            </div>
+            {%endfor%}
+            <div class="row border text-right">
+                <div class="row">
+                    <div class="col-4">
+                        Total Price Without tax : 
+                    </div>
+                    <div class="col-auto">
+                        {{totalprice_without}}
+                    </div>
+
+                </div>
+                <div class="row">
+                    <div class="col-4">
+                        total tax payable       : 
+                    </div>
+                    <div class="col-auto">
+                        {{totaltax}}
+                    </div>
+
+                </div>
+                <div class="row">
+                    <div class="col-4">
+                        Netprice of the purchase item:
+                    </div>
+                    <div class="col-auto">
+                        {{totalpricedetails}}
+                    </div>
+
+                </div>
+                <div class="row">
+                    <div class="col-4">
+                        Rounded down value of the purchase items net price : 
+                    </div>
+                    <div class="col-auto">
+                        {{totalpricedetails}}
+                    </div>
+
+                </div>
+                <div class="row">
+                    <div class="col-4">
+                        balance payable to the customer : 
+                    </div>
+                    <div class="col-auto">
+                        {{balance}}
+                    </div>
+
+                </div>
+
+
+            </div>
+            <div class="row border">
+                Balance Denomination
+                {%for i in deno %}
+                {%if i.denomination%}
+                <div class="row">
+                    <div class="col-auto">
+                        {{i.denomination}}:
+                    </div>
+                    <div class="col-auto">
+                        {{i.count}}
+                    </div>
+                </div>
+                {%endif%}
+            {%endfor%}
             </div>
         </div>
     </div>
